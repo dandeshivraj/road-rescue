@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoadRescue - Vehicle Breakdown Assistance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+    <!-- Main App Content -->
+    <div id="appContent">
+      <!-- Header Navigation -->
+      <header>
+          <div class="container">
+              <nav>
+                  <div class="logo">
+                      <i class="fas fa-car-crash"></i>
+                      Road<span>Rescue</span>
+                  </div>
+                  <button class="mobile-menu-button" id="mobileMenuBtn">
+                      <i class="fas fa-bars"></i>
+                  </button>
+                  <ul class="nav-links" id="navLinks">
+                      <li><a href="#" onclick="showTab('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                      <li><a href="#" onclick="showTab('assistance')"><i class="fas fa-hands-helping"></i> Request Assistance</a></li>
+                      <li><a href="#" onclick="showTab('communication')"><i class="fas fa-comments"></i> Communication</a></li>
+                      <li><a href="#" onclick="showTab('history')"><i class="fas fa-history"></i> History</a></li>
+                  </ul>
+                  <div class="user-profile">
+                      <div class="profile-avatar">u</div>
+                      <span id="profileName">User 1</span>
+                      <div class="notifications-badge" id="notificationsBtn">
+                          <i class="fas fa-bell"></i>
+                          <span class="badge">2</span>
+                          
+                          <!-- Notifications Dropdown -->
+                          <div class="notifications-dropdown" id="notificationsDropdown">
+                              <div class="notifications-header">
+                                  <h3>Notifications</h3>
+                                  <span>Mark all as read</span>
+                              </div>
+                              <div class="notifications-list">
+                                  <div class="notification-item unread">
+                                      <div class="notification-title">Your technician is 5 minutes away</div>
+                                      <div class="notification-content">Arun Kumar will arrive shortly to assist with your flat tire.</div>
+                                      <div class="notification-time">2 minutes ago</div>
+                                  </div>
+                                  <div class="notification-item unread">
+                                      <div class="notification-title">Service reminder</div>
+                                      <div class="notification-content">Your vehicle is due for maintenance next week.</div>
+                                      <div class="notification-time">Yesterday</div>
+                                  </div>
+                                  <div class="notification-item">
+                                      <div class="notification-title">Payment confirmation</div>
+                                      <div class="notification-content">Your last service payment has been processed.</div>
+                                      <div class="notification-time">3 days ago</div>
+                                  </div>
+                              </div>
+                              <div class="notifications-footer">
+                                  <a href="#">View all notifications</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </nav>
+          </div>
+      </header>
+
+      <div class="container">
+          <!-- Tabs Navigation -->
+          <div class="tabs">
+              <div class="tab active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+              <div class="tab" data-tab="assistance"><i class="fas fa-hands-helping"></i> Request Assistance</div>
+              <div class="tab" data-tab="communication"><i class="fas fa-comments"></i> Communication</div>
+              <div class="tab" data-tab="history"><i class="fas fa-history"></i> History</div>
+          </div>
+          
+          <!-- Dashboard Tab -->
+          <div class="tab-content active" id="dashboard">
+              <div class="dashboard-header">
+                  <div>
+                      <h2 class="page-title">Welcome, <span id="userName">User 1</span></h2>
+                      <p class="page-subtitle">Here's your current roadside assistance status</p>
+                  </div>
+                  <button class="btn btn-secondary" onclick="showTab('assistance')"><i class="fas fa-plus"></i> Request Help</button>
+              </div>
+              
+              <div class="panel">
+                  <h3 class="panel-title"><i class="fas fa-car"></i> Current Status</h3>
+                  <div id="activeRequest">
+                      <div class="status-card">
+                          <div class="status-title">
+                              <i class="fas fa-tools"></i> <h4>Breakdown Assistance in Progress</h4>
+                          </div>
+                          <div class="status-details">
+                              <p><strong>Location:</strong> <span id="requestLocation">MG Road, Bengaluru</span></p>
+                              <p><strong>Issue:</strong> <span id="requestIssue">Flat Tire</span></p>
+                              <p><strong>Assigned Technician:</strong> <span id="assignedTech">Arun Kumar</span></p>
+                              <p><strong>Estimated Arrival:</strong> <span id="estimatedArrival" class="pulse" style="color: var(--secondary); font-weight: bold;">10 minutes</span></p>
+                          </div>
+                          <div class="status-actions">
+                              <button class="btn btn-primary"><i class="fas fa-phone"></i> Call Technician</button>
+                              <button class="btn btn-secondary"><i class="fas fa-map-marker-alt"></i> Track Location</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="dashboard-grid">
+                  <div class="panel">
+                      <h3 class="panel-title"><i class="fas fa-car"></i> Your Vehicle</h3>
+                      <div class="vehicle-info">
+                          <div class="vehicle-image">
+                              <i class="fas fa-car"></i>
+                          </div>
+                          <div class="vehicle-details">
+                              <h4>2022 Maruti Suzuki Swift</h4>
+                              <p><strong>License Plate:</strong> KA-05-MX-1234</p>
+                              <p><strong>Last Service:</strong> January 15, 2025</p>
+                              <p><strong>Mileage:</strong> 22,400 km</p>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="panel">
+                      <h3 class="panel-title"><i class="fas fa-clipboard-list"></i> Recent Activity</h3>
+                      <div class="activity-list">
+                          <div class="activity-item">
+                              <div class="activity-icon"><i class="fas fa-wrench"></i></div>
+                              <div class="activity-content">
+                                  <div class="activity-title">Battery Jump Start</div>
+                                  <div class="activity-details">February 28, 2025 - Indiranagar</div>
+                              </div>
+                          </div>
+                          <div class="activity-item">
+                              <div class="activity-icon"><i class="fas fa-gas-pump"></i></div>
+                              <div class="activity-content">
+                                  <div class="activity-title">Fuel Delivery</div>
+                                  <div class="activity-details">January 10, 2025 - Electronic City</div>
+                              </div>
+                          </div>
+                          <div class="activity-item">
+                              <div class="activity-icon"><i class="fas fa-key"></i></div>
+                              <div class="activity-content">
+                                  <div class="activity-title">Lockout Service</div>
+                                  <div class="activity-details">December 15, 2024 - Jayanagar</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+            <!-- Request Assistance Tab -->
+            <div class="tab-content" id="assistance">
+              <h2 class="page-title">Request Roadside Assistance</h2>
+              <p class="page-subtitle">Tell us about your vehicle issue and location</p>
+              
+              <div class="panel">
+                  <div class="form-steps">
+                      <div class="form-step active">
+                          <div class="step-number">1</div>
+                          <div class="step-label">Location</div>
+                      </div>
+                      <div class="form-step">
+                          <div class="step-number">2</div>
+                          <div class="step-label">Vehicle</div>
+                      </div>
+                      <div class="form-step">
+                          <div class="step-number">3</div>
+                          <div class="step-label">Issue</div>
+                      </div>
+                      <div class="form-step">
+                          <div class="step-number">4</div>
+                          <div class="step-label">Confirm</div>
+                      </div>
+                  </div>
+                  
+                  <div class="form-content">
+                      <div class="form-section active" id="locationForm">
+                          <h3 class="form-title">Where are you located?</h3>
+                          
+                          <div class="location-search">
+                              <div class="form-group">
+                                  <label for="addressInput">Your Current Location</label>
+                                  <div class="input-with-icon">
+                                      <i class="fas fa-map-marker-alt"></i>
+                                      <input type="text" id="addressInput" placeholder="Enter your address or use current location">
+                                      <button class="btn btn-icon" title="Use current location"><i class="fas fa-crosshairs"></i></button>
+                                  </div>
+                              </div>
+                              
+                              <div class="location-map">
+                                  <div class="map-placeholder">
+                                      <i class="fas fa-map"></i>
+                                      <p>Map will appear here</p>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                  <label for="landmarkInput">Nearby Landmark (optional)</label>
+                                  <input type="text" id="landmarkInput" placeholder="e.g. Near Indiranagar, Jayanagar, Electronic City, etc.">
+                              </div>
+                          </div>
+                          
+                          <div class="form-actions">
+                              <button class="btn btn-outline">Cancel</button>
+                              <button class="btn btn-primary" onclick="showFormStep(2)">Continue <i class="fas fa-chevron-right"></i></button>
+                          </div>
+                      </div>
+                      
+                      <div class="form-section" id="vehicleForm">
+                          <h3 class="form-title">Select Vehicle</h3>
+                          
+                          <div class="vehicle-selection">
+                              <div class="vehicle-card selected">
+                                  <div class="vehicle-icon"><i class="fas fa-car"></i></div>
+                                  <div class="vehicle-info">
+                                      <h4>2020 Maruti Suzuki Swift</h4>
+                                      <p>License: KA-05-AB-1234</p>
+                                  </div>
+                                  <div class="vehicle-selected">
+                                      <i class="fas fa-check-circle"></i>
+                                  </div>
+                              </div>
+                              
+                              <div class="vehicle-card">
+                                  <div class="vehicle-icon"><i class="fas fa-truck-pickup"></i></div>
+                                  <div class="vehicle-info">
+                                      <h4>2018 Mahindra Bolero</h4>
+                                      <p>License: KA-01-XYZ-9876</p>
+                                  </div>
+                                  <div class="vehicle-selected">
+                                      <i class="fas fa-check-circle"></i>
+                                  </div>
+                              </div>
+                              
+                              <div class="vehicle-card add-vehicle">
+                                  <div class="add-icon"><i class="fas fa-plus-circle"></i></div>
+                                  <p>Add New Vehicle</p>
+                              </div>
+                          </div>
+                          
+                          <div class="form-actions">
+                              <button class="btn btn-outline" onclick="showFormStep(1)"><i class="fas fa-chevron-left"></i> Back</button>
+                              <button class="btn btn-primary" onclick="showFormStep(3)">Continue <i class="fas fa-chevron-right"></i></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Communication Tab -->
+          <div class="tab-content" id="communication">
+              <h2 class="page-title">Communication Center</h2>
+              <p class="page-subtitle">Stay in touch with your technician and support team</p>
+              
+              <div class="communication-container">
+                  <div class="contacts-panel">
+                      <div class="contacts-header">
+                          <h3>Contacts</h3>
+                          <button class="btn btn-icon"><i class="fas fa-search"></i></button>
+                      </div>
+                      
+                      <div class="contact-list">
+                          <div class="contact-item active">
+                              <div class="contact-avatar">
+                                  
+                                  <span class="status-badge online"></span>
+                              </div>
+                              <div class="contact-info">
+                                  <div class="contact-name">Vikram Shetty</div>
+                                  <div class="contact-role">Technician</div>
+                              </div>
+                              <div class="contact-time">2m</div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="chat-panel">
+                      <div class="chat-header">
+                          <div class="chat-contact">
+                              <div class="contact-avatar">
+                                  
+                                  <span class="status-badge online"></span>
+                              </div>
+                              <div class="contact-info">
+                                  <div class="contact-name">Vikram Shetty</div>
+                                  <div class="contact-status">Online - Arriving in 10 min</div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="chat-messages">
+                          <div class="message-item incoming">
+                              <div class="message-content">
+                                  <div class="message-bubble">
+                                      Hello! I've been assigned to help with your flat tire. I'm on my way to your location now.
+                                  </div>
+                                  <div class="message-time">10:23 AM</div>
+                              </div>
+                          </div>
+                          
+                          <div class="message-item outgoing">
+                              <div class="message-content">
+                                  <div class="message-bubble">
+                                      Thanks for the quick response! The tire is the rear passenger side.
+                                  </div>
+                                  <div class="message-time">10:25 AM</div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="chat-input">
+                          <input type="text" placeholder="Type a message...">
+                          <button class="btn btn-icon send-btn"><i class="fas fa-paper-plane"></i></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="tab-content" id="assistance">
+            <h2 class="page-title">Request Roadside Assistance</h2>
+            <p class="page-subtitle">Tell us about your vehicle issue and location</p>
+            
+            <div class="panel">
+                <div class="form-steps">
+                    <div class="form-step active">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Location</div>
+                    </div>
+                    <div class="form-step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Vehicle</div>
+                    </div>
+                    <div class="form-step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Issue</div>
+                    </div>
+                    <div class="form-step">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Confirm</div>
+                    </div>
+                </div>
+                
+                <div class="form-content">
+                    <div class="form-section active" id="locationForm">
+                        <h3 class="form-title">Where are you located?</h3>
+                        
+                        <div class="location-search">
+                            <div class="form-group">
+                                <label for="addressInput">Your Current Location</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <input type="text" id="addressInput" placeholder="Enter your address or use current location">
+                                    <button class="btn btn-icon" title="Use current location"><i class="fas fa-crosshairs"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="location-map">
+                                <div class="map-placeholder">
+                                    <i class="fas fa-map"></i>
+                                    <p>Map will appear here</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="landmarkInput">Nearby Landmark (optional)</label>
+                                <input type="text" id="landmarkInput" placeholder="e.g. Near Indiranagar, Jayanagar, Electronic City, etc.">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary" onclick="showFormStep(2)">Continue <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication Tab -->
+       
+        <!-- Service History Tab -->
+        <div class="tab-content" id="history">
+            <h2 class="page-title">Service History</h2>
+            <p class="page-subtitle">View all your past assistance requests</p>
+            
+            <div class="panel">
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-title">Battery Jump Start</div>
+                        <div class="history-date">February 28, 2025 at 10:35 AM</div>
+                        <div class="history-location">Koramangala, Bengaluru</div>
+                        <div class="history-technician">Technician: Priya Sharma</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  <!-- Scripts -->
+  <script>
+     
+      document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+          document.getElementById('navLinks').classList.toggle('active');
+      });
+    
+      document.getElementById('notificationsBtn').addEventListener('click', function(e) {
+          e.stopPropagation();
+          document.getElementById('notificationsDropdown').classList.toggle('active');
+      });
+      
+      
+      document.addEventListener('click', function(e) {
+          if (!document.getElementById('notificationsBtn').contains(e.target)) {
+              document.getElementById('notificationsDropdown').classList.remove('active');
+          }
+      });
+      
+     
+      function showTab(tabId) {
+       
+          document.querySelectorAll('.tab-content').forEach(function(tab) {
+              tab.classList.remove('active');
+          });
+          
+        
+          document.querySelectorAll('.tab').forEach(function(tab) {
+              tab.classList.remove('active');
+          });
+          
+        
+          document.getElementById(tabId).classList.add('active');
+          document.querySelector('.tab[data-tab="' + tabId + '"]').classList.add('active');
+      }
+      
+      
+      function showFormStep(stepNumber) {
+         
+          document.querySelectorAll('.form-section').forEach(function(section) {
+              section.classList.remove('active');
+          });
+          
+          document.querySelectorAll('.form-step').forEach(function(step, index) {
+              if (index + 1 < stepNumber) {
+                  step.classList.add('completed');
+                  step.classList.remove('active');
+              } else if (index + 1 === stepNumber) {
+                  step.classList.add('active');
+                  step.classList.remove('completed');
+              } else {
+                  step.classList.remove('active', 'completed');
+              }
+          });
+          
+          
+          let formSections = ['locationForm', 'vehicleForm', 'issueForm', 'confirmForm'];
+          document.getElementById(formSections[stepNumber - 1]).classList.add('active');
+      }
+      
+      
+      function submitRequest() {
+          
+          showTab('dashboard');
+          
+          let notification = document.createElement('div');
+          notification.className = 'toast-notification success';
+          notification.innerHTML = '<i class="fas fa-check-circle"></i> Assistance request submitted successfully!';
+          document.body.appendChild(notification);
+          
+          
+          setTimeout(function() {
+              notification.classList.add('hide');
+              setTimeout(function() {
+                  document.body.removeChild(notification);
+              }, 500);
+          }, 5000);
+      }
+      
+    
+      document.addEventListener('DOMContentLoaded', function() {
+          let urlHash = window.location.hash.substring(1);
+          if (urlHash && document.getElementById(urlHash)) {
+              showTab(urlHash);
+          }
+          
+         
+          document.querySelectorAll('.tab').forEach(function(tab) {
+              tab.addEventListener('click', function() {
+                  showTab(this.getAttribute('data-tab'));
+              });
+          });
+      });
+  </script>
+</body>
+</html>
